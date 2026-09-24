@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07060d">
+  <meta name="description" content="TYZA DIMAOND STORE — premium gaming top up for Free Fire and Blood Strike.">
+  <title>TYZA DIMAOND STORE | Gaming Top Up</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="#game-selection" aria-label="TYZA DIMAOND STORE home">
+        <img src="{{ url_for('static', filename='assets/tyza-diamond-store-logo.png') }}" alt="TYZA DIMAOND STORE logo">
+      </a>
+      <div class="header-contact">
+        <a class="phone" href="tel:{{ contact_number }}">{{ contact_number }}</a>
+        <a class="wa-btn" href="https://wa.me/{{ whatsapp_number }}" target="_blank" rel="noopener">
+          <span class="wa-dot">●</span> WhatsApp
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero compact-hero">
+      <div class="hero-copy">
+        <span class="eyebrow">TYZA GAMING • INSTANT TOP UP</span>
+        <h1>Choose your <span>game</span><br>to get started.</h1>
+        <p>Select a game first. Packages and the order flow will then be tailored to that game.</p>
+      </div>
+      <div class="hero-chip">
+        <span class="pulse"></span>
+        <div>
+          <strong>FAST • SECURE • SIMPLE</strong>
+          <small>WhatsApp order support</small>
+        </div>
+      </div>
+    </section>
+
+    <section id="game-selection" class="section">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">01 / GAME SELECTION</span>
+          <h2>Pick a game</h2>
+        </div>
+        <span class="section-note">Select one to view packages</span>
+      </div>
+
+      <div class="game-grid">
+        <button class="game-card" data-game="FREE FIRE" type="button">
+          <img src="{{ url_for('static', filename='assets/free-fire-artwork.jpg') }}" alt="Free Fire">
+          <span class="game-overlay"></span>
+          <div class="game-content">
+            <span class="game-tag">BATTLE ROYALE</span>
+            <h3>FREE FIRE</h3>
+            <span class="game-action">VIEW PACKAGES <b>→</b></span>
+          </div>
+        </button>
+
+        <button class="game-card" data-game="BLOOD STRIKE" type="button">
+          <img src="{{ url_for('static', filename='assets/blood-strike-artwork.webp') }}" alt="Blood Strike">
+          <span class="game-overlay"></span>
+          <div class="game-content">
+            <span class="game-tag">FPS ACTION</span>
+            <h3>BLOOD STRIKE</h3>
+            <span class="game-action">VIEW PACKAGES <b>→</b></span>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <section id="store" class="section hidden">
+      <div class="store-toolbar">
+        <div>
+          <span class="section-kicker">02 / PACKAGES</span>
+          <h2 id="store-title">FREE FIRE</h2>
+          <p id="store-subtitle">Choose your top-up package.</p>
+        </div>
+        <button id="change-game" class="outline-btn" type="button">← CHANGE GAME</button>
+      </div>
+      <div id="package-sections"></div>
+    </section>
+
+    <section id="order" class="section hidden">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">03 / ORDER</span>
+          <h2>Complete your order</h2>
+        </div>
+        <span class="section-note">Enter your player details</span>
+      </div>
+
+      <div class="order-layout">
+        <form id="order-form" class="order-card" autocomplete="off">
+          <div class="order-topline">
+            <div>
+              <span class="mini-label">SELECTED GAME</span>
+              <strong id="selected-game">—</strong>
+            </div>
+            <div>
+              <span class="mini-label">PACKAGE</span>
+              <strong id="selected-package">—</strong>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="uid">Player UID / ID</label>
+            <div class="uid-row">
+              <input id="uid" name="uid" inputmode="numeric" placeholder="Enter your player UID" required>
+              <button id="check-player" class="check-btn" type="button">CHECK PLAYER</button>
+            </div>
+            <div id="lookup-status" class="field-status" aria-live="polite"></div>
+          </div>
+
+          <div class="verified-player">
+            <span class="status-icon">✓</span>
+            <div>
+              <span>PLAYER NAME</span>
+              <strong id="player-name">Not verified</strong>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="customer-name">Customer name</label>
+              <input id="customer-name" name="customer-name" placeholder="Your name" required>
+            </div>
+            <div class="field">
+              <label for="contact">WhatsApp / contact number</label>
+              <input id="contact" name="contact" inputmode="tel" placeholder="07XXXXXXXX" required>
+            </div>
+          </div>
+
+          <div class="qty-line">
+            <div>
+              <span class="mini-label">QUANTITY</span>
+              <strong id="order-quantity">1</strong>
+            </div>
+            <div class="quantity">
+              <button id="order-minus" type="button" aria-label="Decrease quantity">−</button>
+              <span id="qty-value">1</span>
+              <button id="order-plus" type="button" aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+
+          <button id="send-whatsapp" class="primary-btn" type="submit">
+            SEND ORDER TO WHATSAPP <span>↗</span>
+          </button>
+        </form>
+
+        <aside class="summary-card">
+          <div class="summary-head">
+            <span class="section-kicker">ORDER SUMMARY</span>
+            <span class="summary-dot"></span>
+          </div>
+          <div class="summary-game">
+            <span id="summary-game">FREE FIRE</span>
+            <small>Gaming top up</small>
+          </div>
+          <div class="summary-row"><span>Package</span><strong id="summary-package">—</strong></div>
+          <div class="summary-row"><span>Quantity</span><strong id="summary-qty">1</strong></div>
+          <div class="summary-row total-row"><span>Total</span><strong id="summary-total">Rs. 0</strong></div>
+          <div class="summary-note">Final order details will be sent directly to TYZA DIMAOND STORE on WhatsApp.</div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="trust-strip">
+      <div><b>01</b><span>GAME FIRST</span><small>Choose before packages</small></div>
+      <div><b>02</b><span>CLEAR PRICING</span><small>Simple package selection</small></div>
+      <div><b>03</b><span>WHATSAPP ORDER</span><small>Direct support</small></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <strong>TYZA DIMAOND STORE</strong>
+      <span>FF • BLOOD STRIKE • GAMING TOP UP</span>
+    </div>
+    <a href="tel:{{ contact_number }}">{{ contact_number }}</a>
+  </footer>
+
+  <script>
+    window.PACKAGES = {{ packages | tojson }};
+    window.WHATSAPP_NUMBER = {{ whatsapp_number | tojson }};
+  </script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
